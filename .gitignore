@@ -1,0 +1,4 @@
+# secrete file
+.env
+# all node file folder
+/node_modules
