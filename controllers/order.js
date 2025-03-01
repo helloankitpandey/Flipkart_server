@@ -48,73 +48,73 @@ const createTransaction = async(req, res) => {
 };
 
 
-// const createOrder = async(req, res) => {
-//     // getting all details from frontend
-//     const {
-//         razorpay_order_id,
-//         razorpay_payment_id,
-//         razorpay_signature,
-//         userId,
-//         cartItems,
-//         deliveryDate,
-//         address,
-//     } = req.body;
+const createOrder = async(req, res) => {
+    // getting all details from frontend
+    const {
+        razorpay_order_id,
+        razorpay_payment_id,
+        razorpay_signature,
+        userId,
+        cartItems,
+        deliveryDate,
+        address,
+    } = req.body;
 
-//     const key_secret = process.env.RAZOR_PAY_SECRET;
+    const key_secret = process.env.RAZOR_PAY_SECRET;
 
-//     // generating verification and signature
-//     const generated_signature = crypto
-//        .createHmac("sha256", key_secret)
-//        .update(razorpay_order_id + " " + razorpay_payment_id)
-//        .digest("hex");
+    // generating verification and signature
+    const generated_signature = crypto
+       .createHmac("sha256", key_secret)
+       .update(razorpay_order_id + " " + razorpay_payment_id)
+       .digest("hex");
        
-//     if (generated_signature == razorpay_signature) {
-//         try {
+    if (generated_signature == razorpay_signature) {
+        try {
 
-//             // create trancsaction
-//             const transaction = await Transaction.create({
-//                 user: userId,
-//                 paymentId: razorpay_payment_id,
-//                 orderId: razorpay_order_id,
-//                 status: "Success",
-//                 amount: cartItems.reduce(
-//                     (total, item) => total + item?.quantity * item.price,
-//                     0
-//                 ),
-//             });
+            // create trancsaction
+            const transaction = await Transaction.create({
+                user: userId,
+                paymentId: razorpay_payment_id,
+                orderId: razorpay_order_id,
+                status: "Success",
+                amount: cartItems.reduce(
+                    (total, item) => total + item?.quantity * item.price,
+                    0
+                ),
+            });
 
-//             // create order 
-//             const order = await Order.create({
-//                 user: userId,
-//                 address,
-//                 deliveryDate,
-//                 items: cartItems?.map((item) => ({
-//                     product: item?._id,
-//                     quantity: item?.quantity,
-//                 })),
-//                 status: "Order Placed",
-//             });
+            // create order 
+            const order = await Order.create({
+                user: userId,
+                address,
+                deliveryDate,
+                items: cartItems?.map((item) => ({
+                    product: item?._id,
+                    quantity: item?.quantity,
+                })),
+                status: "Order Placed",
+            });
 
-//             transaction.order = order._id;
-//             await transaction.save();
+            transaction.order = order._id;
+            await transaction.save();
 
-//             res.json({
-//                 success: true,
-//                 message: "Payment Verified and Order created",
-//                 order,
-//             });
+            res.json({
+                success: true,
+                message: "Payment Verified and Order created",
+                order,
+            });
             
-//         } catch (error) {
-//             res.status(500).json({
-//                 status: "failed",
-//                 message: "Failed to create transaction or order",
-//                 error, //: error.message
-//             })
-//         }
-//     }
+        } catch (error) {
+            res.status(500).json({
+                status: "failed",
+                message: "Failed to create transaction or order",
+                error, //: error.message
+            })
+        }
+    }
 
 
-// };
+};
 
 // const getOrdersByUserId = async(req, res) => {
 
@@ -153,4 +153,4 @@ const createTransaction = async(req, res) => {
 
 
 
-export { createTransaction};
+export { createTransaction, createOrder  };
