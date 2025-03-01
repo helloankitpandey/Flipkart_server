@@ -116,41 +116,40 @@ const createOrder = async(req, res) => {
 
 };
 
-// const getOrdersByUserId = async(req, res) => {
+const getOrdersByUserId = async(req, res) => {
 
-//     const { userId } = req.params;
+    const { userId } = req.params;
 
-//     try {
+    try {
 
-//         // 
-//         const orders = await Order.find({ user: userId })
-//         .populate("user", "name email")
-//         .populate("items.product", "name price image_uri ar_uri")
-//         .sort({ createdAt: -1 });
+        
+        const orders = await Order.find({ user: userId })
+        .populate("user", "name email")
+        .populate("items.product", "name price image_uri ar_uri")
+        .sort({ createdAt: -1 });
 
-//         if (!orders || orders.length === 0) {
-//             return res.status(404).json({
-//                 success: false,
-//                 message: "No orders found for this user",
-//             });
-//         }
+        if (!orders || orders.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No orders found for this user",
+            });
+        }
 
-//         res.status(200).json({
-//             success: true,
-//             orders,
-//         });
-
-
-//     } catch (error) {
-//         res.status(500).json({
-//             success: false,
-//             message: "Failed to retrieve orders",
-//             error: error.message,
-//         });
-//     }
-// };
+        res.status(200).json({
+            success: true,
+            orders,
+        });
 
 
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Failed to retrieve orders",
+            error: error.message,
+        });
+    }
+};
 
 
-export { createTransaction, createOrder  };
+
+export { createTransaction, createOrder , getOrdersByUserId };
