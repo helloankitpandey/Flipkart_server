@@ -6,7 +6,7 @@ const ProductSchema = new Schema({
     image_uri: {type: String, requied: true },
     price: {type: Number, required: true },
     ar_uri: {type: String },
-    descreiption: { type: String },
+    description: { type: String },
     // here we use foreign key for adding product to category
     category: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category"}],
     createdAt: { type: Date, default: Date.now },
