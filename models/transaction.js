@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 
-const transactionSchema = new Schema({
+const TransactionSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -15,7 +15,7 @@ const transactionSchema = new Schema({
     orderId: { type: String, required: true },
     status: {
         type: String,
-        enum: [ "Success", "Failed", "Pending" ],
+        enum: ["Success", "Failed", "Pending"],
         required: true,
     },
     amount: { type: Number, required: true },
@@ -23,6 +23,6 @@ const transactionSchema = new Schema({
     updatedAt: { type: Date, default: Date.now },
 });
 
-const Transaction = mongoose.model("Transaction", transactionSchema);
+const Transaction = mongoose.model("Transaction", TransactionSchema);
 
 export default Transaction;
