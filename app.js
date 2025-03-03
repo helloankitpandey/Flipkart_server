@@ -34,7 +34,7 @@ const start = async() => {
         await connectDB(process.env.MONGO_URI);
 
         // 
-        await buildAdminJS(app);
+        // await buildAdminJS(app);
 
         app.listen({port: PORT , host: "0.0.0.0" }, (err, addr) => {
             if(err){
