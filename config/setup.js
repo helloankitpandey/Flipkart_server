@@ -14,7 +14,7 @@ import Transaction from "../models/transaction.js";
 import { COOKIE_PASSWORD } from "./config.js";
 
 // adminjs register krega ak adapter ko && ye adminjs mongoose adapter hoga
-// AdminJS.registerAdapter(AdminJSMongoose);
+AdminJS.registerAdapter(AdminJSMongoose);
 
 // user data
 const DEFAULT_ADMIN = {
