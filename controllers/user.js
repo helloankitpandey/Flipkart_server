@@ -36,7 +36,7 @@ const loginOrSignUp = async(req, res) => {
             
         } else {
             // if exist already then update address and save it
-            user.address = address;
+            // user.address = address;
             await user.save();
         }
 
