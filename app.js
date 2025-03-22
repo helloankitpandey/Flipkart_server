@@ -12,7 +12,7 @@ import { buildAdminJS } from "./config/setup.js";
 
 
 // config for readablity of all env in our application
-dotenv.config();
+// dotenv.config();
 
 
 const app = express();
