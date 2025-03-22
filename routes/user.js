@@ -12,6 +12,6 @@ const router = express.Router();
 // User Login routes
 
 
-// router.post("/login", loginOrSignUp)
+router.post("/login", loginOrSignUp)
 
 export default router;
