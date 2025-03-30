@@ -39,7 +39,7 @@ const createTransaction = async(req, res) => {
         })
         
     } catch (error) {
-        res.status.json({
+        res.status(403).json({
             success: false,
             message: "Failed to create a order",
             error: error.message,
