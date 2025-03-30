@@ -2,15 +2,25 @@ import Razorpay from "razorpay";
 import crypto from "crypto";
 import Order from "../models/order.js";
 import Transaction from "../models/transaction.js";
+import "dotenv/config"
 
 
 const createTransaction = async(req, res) => {
     const { amount, userId } = req.body;
+    let razorpay;
 
-    const razorpay = new Razorpay({
-        key_id: process.env.RAZOR_PAY_KEY_ID,
-        key_secret: process.env.RAZOR_PAY_SECRET,
-    });
+    try {
+        razorpay = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_SECRET,
+        });
+    } catch (error) {
+        console.log("error while setting razorpay ", error)
+        res.status(501).json({
+            message: "Error ho gya"
+        })
+        return ;
+    }
 
     const options = {
         amount: amount,
