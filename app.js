@@ -8,7 +8,7 @@ import orderRoutes from "./routes/order.js";
 import connectDB from "./config/connect.js";
 import { PORT } from "./config/config.js";
 import { buildAdminJS } from "./config/setup.js";
-
+import cors from "cors"
 
 
 // config for readablity of all env in our application
@@ -19,6 +19,9 @@ const app = express();
 
 // Returns middleware that only parses json and only looks at requests where the Content-Type header matches the type option.
 app.use(express.json())
+
+// for cors error
+app.use(cors());
 
 // Routes
 app.use("/user", userRoutes);
