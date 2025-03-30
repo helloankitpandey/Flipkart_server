@@ -21,7 +21,7 @@ const app = express();
 app.use(express.json())
 
 // for cors error
-app.use(cors());
+app.use(cors({ origin: "*"}));
 
 // Routes
 app.use("/user", userRoutes);
