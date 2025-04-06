@@ -35,6 +35,8 @@ const start = async() => {
 
         // CONNECTING TO MONGODB
         await connectDB(process.env.MONGO_URI);
+        console.log("Checking");
+        
 
         // 
         await buildAdminJS(app);
